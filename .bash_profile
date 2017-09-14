@@ -3,8 +3,7 @@ updateNodeVersion() {
   nvmrcFile="$(nvm_find_nvmrc)"
 	[ -z "$nvmrcFile" ] ||  nvmrc="$(cat $nvmrcFile)"
   if [ -z "$nvmrc" ]; then
-    # Not allowed to have an empty if block
-    echo '' > /dev/null
+    return
   elif [ "$PWD" != "$MYOLDPWD" ]; then
     MYOLDPWD="$PWD";
     nodeVersion="$(node -v | sed s/v//)"
@@ -15,14 +14,12 @@ updateNodeVersion() {
 }
 
 # This is run before every prompt
-export PROMPT_COMMAND=updateNodeVersion
-
+# Add updateNodeVersion to existing prompt command
+export PROMPT_COMMAND="updateNodeVersion${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 # Git branch in prompt.
 parse_git_branch() {
-
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
-
 }
 
 export PATH=/Users/k.ramdany/scala/bin:$PATH
