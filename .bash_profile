@@ -1,17 +1,21 @@
 # select correct node version by running nvm use if applicable
 updateNodeVersion() {
-  if [ "$PWD" != "$MYOLDPWD" ]; then
+  nvmrcFile="$(nvm_find_nvmrc)"
+	[ -z "$nvmrcFile" ] ||  nvmrc="$(cat $nvmrcFile)"
+  if [ -z "$nvmrc" ]; then
+    # Not allowed to have an empty if block
+    echo '' > /dev/null
+  elif [ "$PWD" != "$MYOLDPWD" ]; then
     MYOLDPWD="$PWD";
-    # hide errors if directory doesn't have .nvm file. Otherwise show what version of node has been switched
-    # however this may hide the fact that a particular node version is not currently installed
-    nvm use 2> /dev/null
+    nodeVersion="$(node -v | sed s/v//)"
+    if [ "$nvmrc" != "$nodeVersion" ]; then
+      nvm use
+    fi
   fi
 }
 
 # This is run before every prompt
 export PROMPT_COMMAND=updateNodeVersion
-
-
 
 
 # Git branch in prompt.
