@@ -42,3 +42,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # shortcut to opening files with google chrome
 alias chrome='open -a "Google Chrome"'
+# displays folders with trailing slash
+alias ls='ls -p'
