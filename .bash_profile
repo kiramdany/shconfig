@@ -41,3 +41,5 @@ export NVM_DIR="$HOME/.nvm"
 alias chrome='open -a "Google Chrome"'
 # displays folders with trailing slash
 alias ls='ls -p'
+# safety net for rm
+alias rm='trash'
