@@ -4,8 +4,6 @@
 #  and put the line 'source $HOME/.bash_apparix' (without quotes)
 #  in the file $HOME/.bashrc.
 
-# list directories with trailing 
-alias ls='ls -p'
 
 function to () {
   true
@@ -21,21 +19,10 @@ function to () {
       local additionalPath="${*+ ${*}}"
       local path=$initialPath$additionalPath
     fi
-    echo path:
-    echo $path
+    
     local loc="$(apparix $bookmark)/$path"
-    echo bookmark:
-    echo $bookmark
-    echo initialPath:
-    echo $initialPath
-    echo additionalPath:
-    echo $additionalPath
-    echo bookmark expansion:
-    echo $(apparix $bookmark)
-    echo loc:
-    echo $loc
   else
-    local loc=$HOME
+    loc=$HOME
   fi
   if [[ $? == 0 ]]; then
     cd "$loc"
