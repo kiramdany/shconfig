@@ -10,13 +10,14 @@ function to () {
   if test "$1"; then
     # Take everything before the first /
     local bookmark=${1%%/*}
-    # Take everything after the trailing /
+    # Take everything after the first /
     local initialPath=${1#*/}
     # Hacky check to see if bookmark doesn't have a trailing slash
     if [ "$bookmark" != "$initialPath" ]; then
       shift
       # Add the first space if the path contains spaces. More than one space is not supported
       local additionalPath="${*+ ${*}}"
+      # First space needs to be included in $additionalPath, otherwise path will be incorrect when $additionalPath is empty
       local path=$initialPath$additionalPath
     fi
     
@@ -40,39 +41,78 @@ function bm () {
 }
 
 # function to generate list of completions from .apparixrc
-function _apparix_aliases ()
-{ cur=$2
-  dir=$3
-  COMPREPLY=()
-  nullglobsa=$(shopt -p nullglob)
-  shopt -s nullglob
-  if let $(($COMP_CWORD == 1)); then
-    # now cur=<apparix mark> (completing on this) and dir='to'
-    # Below will complete on subdirectories of current directory. swap if so desired.
-    # COMPREPLY=( $( (cat $HOME/.apparix{rc,expand} | grep "\<j," | cut -f2 -d, ; ls -1p | grep '/$' | tr -d /) | grep "\<$cur.*" ) )
-    # Below will not complete on subdirectories of current directory. swap if so desired.
-    COMPREPLY=( $( cat $HOME/.apparix{rc,expand} | grep "j,.*$cur.*," | cut -f2 -d, ) )
+function _apparix_aliases () { 
+  local command=$1
+  local current=$2
+  local previous=$3
+  # Take everything before the first /
+  local bookmark=${2%%/*}
+  
+  local initialPath=${2#*/}
+  # echo
+#   echo 0
+#   echo $0
+#   echo 1
+#   echo $1
+#   echo 2
+#   echo $2
+#   echo 3
+#   echo $3
+#   echo 4
+#   echo $4
+#   echo compword
+#   echo "${COMP_WORDS[@]}"
+  # Take everything before the first /
+  local bookmark="${COMP_WORDS[1]%%/*}"
+  # Take everything after the first /
+  local initialPath="${COMP_WORDS[1]#*/}"
+  # Hacky check to see if bookmark doesn't have a trailing slash
+  if [ "$bookmark" == "$initialPath" ]; then
+    # grepping with -i as my bash settings have readline completions case insensitive as well
+    local replies=( $( cat $HOME/.apparixrc | grep -i "j,$bookmark.*" | cut -f2 -d, ) )
+    
+    # Should do a check if there are any matches at all
+    
+    # If compreply has length 1 add a trailing slash
+    if [ ${#replies[@]} == 1 ]; then
+      COMPREPLY=( ${replies[0]}/ )
+    else
+      COMPREPLY=( "${replies[@]}" )
+      # echo "${replies[@]}"
+    fi
   else
-    # now dir=<apparix mark> and cur=<subdirectory-of-mark> (completing on this)
-    # or cur=<fileordir> (when bound for example to ae)
-    # dir=`apparix --try-current-last -favour rOl $dir 2>/dev/null` || return 0
-#     eval_compreply="COMPREPLY=( $(
-#       cd "$dir"
-#       \ls -d $cur* | while read r
-#       do
-#         [[ $1 == 'ae' || $1 == 'als' || -d "$r" ]] &&
-#         [[ $r == *$cur* ]] &&
-#           echo \"${r// /\\ }\/\"
-#       done
-#     ) )"
-#   eval $eval_compreply
-	## My new completion code
-	cd "$(apparix $dir)" # Ideally this would be done in a subshell however for some reason OSX launches subshells as login shells as well so there would be additional text from when the subshell logs out
-	# This doesn't exactly work as compgen doesn't auto escape output, so files and directories with spaces in the name don't display correctly
-	COMPREPLY=($(compgen -f $cur))
-	cd - > /dev/null
-	## end of my completion code
+    local pathArray=( "${COMP_WORDS[@]}" )
+    unset pathArray[0]
+    unset pathArray[1]
+    # echo "${pathArray[@]}"
+    # Add the first space if the path contains spaces. More than one space is not supported
+    local additionalPath="${pathArray[@]+ ${pathArray[@]}}"
+    # First space needs to be included in $additionalPath, otherwise path will be incorrect when $additionalPath is empty
+    local path=$initialPath$additionalPath
+    local loc="$(apparix $bookmark)/$path"
+    # nullglobsa=$(shopt -p nullglob)
+    local replies=()
+    # BUG: replies aren't properly stripped because my setting has compgen being case insensitive
+    local IFS=$'\n'; for i in $(compgen -f "$loc"); do
+      # BUG: shouldn't completely strip out $loc, want to show complete file name in the comp reply
+      replies+=( ${i#"$loc"} )
+     done
+     # If compreply has length 1 make sure that current input is not completely replaced by the suggestion
+     # IMPROVEMENT: This should check whether it is a folder or not and only add a slash if directory
+     if [ ${#replies[@]} == 1 ]; then
+       # Check whether CWORD is the one that has the apparix bookmark or just a space in a directory name
+       if [ $COMP_CWORD > 1 ]; then
+         COMPREPLY=( "${COMP_WORDS[$COMP_CWORD]}${replies[0]}"/ )
+       else
+         COMPREPLY=( "${bookmark}/$path${replies[0]}"/ )
+       fi
+     else
+       COMPREPLY=( "${replies[@]}" )
+       # Some bug here when there is more than one completion but it has completed as far as what is in common between the replies
+     fi
+    # $nullglobsa
   fi
+  # Can't remember what this is for
   $nullglobsa
   return 0
 }
