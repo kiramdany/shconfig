@@ -1,13 +1,18 @@
 # select correct node version by running nvm use if applicable
 updateNodeVersion() {
-  nvmrcFile="$(nvm_find_nvmrc)"
+  local nvmrcFile="$(nvm_find_nvmrc)"
 	[ -z "$nvmrcFile" ] ||  nvmrc="$(cat $nvmrcFile)"
   if [ -z "$nvmrc" ]; then
     return
   elif [ "$PWD" != "$MYOLDPWD" ]; then
     MYOLDPWD="$PWD";
-    nodeVersion="$(node -v | sed s/v//)"
-    if [ "$nvmrc" != "$nodeVersion" ]; then
+    # This always starts with a v and has the complete version
+    local nodeVersion="$(node -v)"
+    # nvmrc can be written in any level of detail starting from Major.Minor.Patch
+    # So want to test is nodeVersion contains nvmrc
+    local diff="${nodeVersion#v$nvmrc}"
+    # If they are the same then nvmrc wasn't contained in nodeVersion so need to change node version
+    if [ "$diff" == "${nodeVersion}" ]; then
       nvm use
     fi
   fi
