@@ -6,6 +6,7 @@
 
 
 function to () {
+  # This is a builtin command that returns 0 exit status. For use with the $? check below
   true
   if test "$1"; then
     # Take everything before the first /
@@ -25,7 +26,7 @@ function to () {
   else
     loc=$HOME
   fi
-  if [[ $? == 0 ]]; then
+  if [ $? -eq 0 ]; then
     cd "$loc"
   fi
 }
@@ -48,33 +49,22 @@ function _apparix_aliases () {
   # Take everything before the first /
   local bookmark=${2%%/*}
   
+  # Take everything after the first /
   local initialPath=${2#*/}
-  # echo
-#   echo 0
-#   echo $0
-#   echo 1
-#   echo $1
-#   echo 2
-#   echo $2
-#   echo 3
-#   echo $3
-#   echo 4
-#   echo $4
-#   echo compword
-#   echo "${COMP_WORDS[@]}"
+
   # Take everything before the first /
   local bookmark="${COMP_WORDS[1]%%/*}"
   # Take everything after the first /
   local initialPath="${COMP_WORDS[1]#*/}"
   # Hacky check to see if bookmark doesn't have a trailing slash
-  if [ "$bookmark" == "$initialPath" ]; then
+  if [ "$bookmark" = "$initialPath" ]; then
     # grepping with -i as my bash settings have readline completions case insensitive as well
     local replies=( $( cat $HOME/.apparixrc | grep -i "j,$bookmark.*" | cut -f2 -d, ) )
     
     # Should do a check if there are any matches at all
     
     # If compreply has length 1 add a trailing slash
-    if [ ${#replies[@]} == 1 ]; then
+    if [ ${#replies[@]} -eq 1 ]; then
       COMPREPLY=( ${replies[0]}/ )
     else
       COMPREPLY=( "${replies[@]}" )
@@ -99,16 +89,16 @@ function _apparix_aliases () {
      done
      # If compreply has length 1 make sure that current input is not completely replaced by the suggestion
      # IMPROVEMENT: This should check whether it is a folder or not and only add a slash if directory
-     if [ ${#replies[@]} == 1 ]; then
+     if [ ${#replies[@]} -eq 1 ]; then
        # Check whether CWORD is the one that has the apparix bookmark or just a space in a directory name
-       if [ $COMP_CWORD > 1 ]; then
+       if [ $COMP_CWORD -gt 1 ]; then
          COMPREPLY=( "${COMP_WORDS[$COMP_CWORD]}${replies[0]}"/ )
        else
          COMPREPLY=( "${bookmark}/$path${replies[0]}"/ )
        fi
      else
        COMPREPLY=( "${replies[@]}" )
-       # Some bug here when there is more than one completion but it has completed as far as what is in common between the replies
+       # BUG: Some bug here when there is more than one completion but it has completed as far as what is in common between the replies
      fi
     # $nullglobsa
   fi
@@ -117,6 +107,7 @@ function _apparix_aliases () {
   return 0
 }
 
+# Feature: This shouldn't really be an alias, it should follow how to() works but without the cd
 alias ap='apparix'
 
 
@@ -124,6 +115,7 @@ alias ap='apparix'
 # being expanded
 complete -o nospace -F _apparix_aliases to
 complete -o nospace -F _apparix_aliases apparix
+# BUG: in the current usage of ap, the completition is actually incorrect
 complete -o nospace -F _apparix_aliases ap
 
 export APPARIXLOG=$HOME/.apparixlog
