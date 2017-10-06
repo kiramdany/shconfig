@@ -42,7 +42,8 @@ function bm () {
 }
 
 # function to generate list of completions from .apparixrc
-function _apparix_aliases () { 
+function _apparix_aliases () {
+  local debugDir="/Users/k.ramdany/Documents/Playground/BashDebug/"
   local command=$1
   local current=$2
   local previous=$3
@@ -67,36 +68,70 @@ function _apparix_aliases () {
     if [ ${#replies[@]} -eq 1 ]; then
       COMPREPLY=( ${replies[0]}/ )
     else
+      true
       COMPREPLY=( "${replies[@]}" )
-      # echo "${replies[@]}"
     fi
   else
     local pathArray=( "${COMP_WORDS[@]}" )
+    # echo pathArray
+#     echo ${pathArray[@]}
+#     echo
     unset pathArray[0]
     unset pathArray[1]
     # echo "${pathArray[@]}"
     # Add the first space if the path contains spaces. More than one space is not supported
     local additionalPath="${pathArray[@]+ ${pathArray[@]}}"
     # First space needs to be included in $additionalPath, otherwise path will be incorrect when $additionalPath is empty
-    local path=$initialPath$additionalPath
+    local path="$initialPath$additionalPath"
     local loc="$(apparix $bookmark)/$path"
+    # Get everything before the last slash
+    local currDir="${path%/*}"
     # nullglobsa=$(shopt -p nullglob)
+    
+    echo "$currDir" >> "${debugDir}currDir"
+    echo "$path" >> "${debugDir}path"
+    echo "$bookmark" >> "${debugDir}bookmark"
+
+    
     local replies=()
     # BUG: replies aren't properly stripped because my setting has compgen being case insensitive
     local IFS=$'\n'; for i in $(compgen -f "$loc"); do
       # BUG: shouldn't completely strip out $loc, want to show complete file name in the comp reply
-      replies+=( ${i#"$loc"} )
+      replies+=( "${i##*/}" )
      done
+     echo "${replies[@]}" >> "${debugDir}replies"
+     echo "$COMP_CWORD" >> "${debugDir}COMP_CWORD"
+     echo "${COMP_WORDS[@]}" >> "${debugDir}COMP_WORDS"
+     # echo "${replies[@]}"
      # If compreply has length 1 make sure that current input is not completely replaced by the suggestion
      # IMPROVEMENT: This should check whether it is a folder or not and only add a slash if directory
+     
+     
+     # Need to do a hacky check between currDir and path, to see if currDir is an actual directory
+     
+     
      if [ ${#replies[@]} -eq 1 ]; then
-       # Check whether CWORD is the one that has the apparix bookmark or just a space in a directory name
+       # Checkwhether CWORD is the one that has the apparix bookmark or just a space in a directory name
        if [ $COMP_CWORD -gt 1 ]; then
-         COMPREPLY=( "${COMP_WORDS[$COMP_CWORD]}${replies[0]}"/ )
+         # Would need to do a check to see if current compword is a directory
+         # Similar to path and currDir
+         # Will have add difference between replies[0] and path(after the last slash)
+         trailing="${path##*/}"
+         # Using perl as BSD sed (MacOS) doesn't support case insensitive matching
+         reply=$(echo ${replies[0]} | perl -pe "s/${trailing}//i")
+         COMPREPLY=( "${COMP_WORDS[$COMP_CWORD]}${reply}"/ )
        else
-         COMPREPLY=( "${bookmark}/$path${replies[0]}"/ )
+         # true
+         if [ ${currDir} = ${path} ]; then
+           COMPREPLY=( "${bookmark}/${replies[0]}"/ )
+         else
+           COMPREPLY=( "${bookmark}/$currDir/${replies[0]}"/ )
+         fi
        fi
+     elif [ ${#replies[@]} -eq 0 ]; then
+       true
      else
+       # Will need a condition to check whether there is anything in common between the replies, if so return only the common bit with the extra prefixes included so that the current arguments aren't clobbered
        COMPREPLY=( "${replies[@]}" )
        # BUG: Some bug here when there is more than one completion but it has completed as far as what is in common between the replies
      fi
@@ -104,6 +139,7 @@ function _apparix_aliases () {
   fi
   # Can't remember what this is for
   $nullglobsa
+  echo "${COMPREPLY[@]}" >> "${debugDir}COMPREPLY"
   return 0
 }
 
