@@ -94,9 +94,9 @@ function _apparix_aliases () {
 
     
     local replies=()
-    # BUG: replies aren't properly stripped because my setting has compgen being case insensitive
+    local completions=()
     local IFS=$'\n'; for i in $(compgen -f "$loc"); do
-      # BUG: shouldn't completely strip out $loc, want to show complete file name in the comp reply
+      completions+=( "$(echo $i | perl -pe "s{"${loc}"}{}i")" )
       replies+=( "${i##*/}" )
      done
      echo "${replies[@]}" >> "${debugDir}replies"
@@ -109,6 +109,7 @@ function _apparix_aliases () {
      
      # Need to do a hacky check between currDir and path, to see if currDir is an actual directory
      
+     local trailing="${path##*/}"
      
      if [ ${#replies[@]} -eq 1 ]; then
        # Checkwhether CWORD is the one that has the apparix bookmark or just a space in a directory name
@@ -116,7 +117,6 @@ function _apparix_aliases () {
          # Would need to do a check to see if current compword is a directory
          # Similar to path and currDir
          # Will have add difference between replies[0] and path(after the last slash)
-         trailing="${path##*/}"
          # Using perl as BSD sed (MacOS) doesn't support case insensitive matching
          reply=$(echo ${replies[0]} | perl -pe "s/${trailing}//i")
          COMPREPLY=( "${COMP_WORDS[$COMP_CWORD]}${reply}"/ )
@@ -128,12 +128,14 @@ function _apparix_aliases () {
            COMPREPLY=( "${bookmark}/$currDir/${replies[0]}"/ )
          fi
        fi
-     elif [ ${#replies[@]} -eq 0 ]; then
-       true
      else
-       # Will need a condition to check whether there is anything in common between the replies, if so return only the common bit with the extra prefixes included so that the current arguments aren't clobbered
-       COMPREPLY=( "${replies[@]}" )
-       # BUG: Some bug here when there is more than one completion but it has completed as far as what is in common between the replies
+       # $replies is the full file/folder name, so doesn't take into account where we are already
+       local common="$(node /Users/k.ramdany/shconfig/lcp.js ${completions[@]})"
+       if [ -z "$common" ]; then
+         COMPREPLY=( "${replies[@]}" )
+       else
+         COMPREPLY=( "${bookmark}/$path${common}" )
+       fi
      fi
     # $nullglobsa
   fi
