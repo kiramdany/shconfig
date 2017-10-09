@@ -132,7 +132,7 @@ function _apparix_aliases () {
        # $replies is the full file/folder name, so doesn't take into account where we are already
        local common="$(node /Users/k.ramdany/shconfig/lcp.js ${completions[@]})"
        if [ -z "$common" ]; then
-         COMPREPLY=( "${replies[@]}" )
+         COMPREPLY=( "${completions[@]}" )
        else
          COMPREPLY=( "${bookmark}/$path${common}" )
        fi
