@@ -41,6 +41,8 @@ export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
+eval "$(pyenv init -)" # init pyenv to choose python version similiar to rvm and nvm
+
 
 # shortcut to opening files with google chrome
 alias chrome='open -a "Google Chrome"'
