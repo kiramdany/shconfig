@@ -46,5 +46,7 @@ eval "$(pyenv init -)" # init pyenv to choose python version similiar to rvm and
 
 # shortcut to opening files with google chrome
 alias chrome='open -a "Google Chrome"'
+# shortcut to opening projects with Android Studio
+alias studio='open -a "Android Studio"'
 # displays folders with trailing slash
 alias ls='ls -pG'
