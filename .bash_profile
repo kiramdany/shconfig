@@ -1,20 +1,25 @@
 # select correct node version by running nvm use if applicable
 updateNodeVersion() {
+  if [ "$PWD" == "$MYOLDPWD" ]; then
+    return
+  fi
+  MYOLDPWD="$PWD"
   local nvmrcFile="$(nvm_find_nvmrc)"
+  # Declare nvmrc before so that the [-z] (string test) works as expected
+  nvmrc=''
 	[ -z "$nvmrcFile" ] ||  nvmrc="$(cat $nvmrcFile)"
   if [ -z "$nvmrc" ]; then
     return
-  elif [ "$PWD" != "$MYOLDPWD" ]; then
-    MYOLDPWD="$PWD";
-    # This always starts with a v and has the complete version
-    local nodeVersion="$(node -v)"
-    # nvmrc can be written in any level of detail starting from Major.Minor.Patch
-    # So want to test is nodeVersion contains nvmrc
-    local diff="${nodeVersion#v$nvmrc}"
-    # If they are the same then nvmrc wasn't contained in nodeVersion so need to change node version
-    if [ "$diff" == "${nodeVersion}" ]; then
-      nvm use
-    fi
+  fi
+  # This always starts with a v and has the complete version
+  local nodeVersion="$(node -v)"
+  # nvmrc can be written in any level of detail starting from Major.Minor.Patch
+  # So want to test if nodeVersion contains nvmrc
+  # TODO: Handle the case where nvmrc also starts with a 'v'
+  local diff="${nodeVersion#v$nvmrc}"
+  # If they are the same then nvmrc wasn't contained in nodeVersion so need to change node version
+  if [ "$diff" == "${nodeVersion}" ]; then
+    nvm use
   fi
 }
 
@@ -24,7 +29,7 @@ export PROMPT_COMMAND="updateNodeVersion${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 # Git branch in prompt.
 parse_git_branch() {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
 export PATH=/Users/k.ramdany/scala/bin:$PATH
