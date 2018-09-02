@@ -27,11 +27,16 @@ updateNodeVersion() {
 # Add updateNodeVersion to existing prompt command
 export PROMPT_COMMAND="updateNodeVersion${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
+# Git branch in prompt.
+parse_git_branch() {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
 export PATH=/Users/k.ramdany/scala/bin:$PATH
-export PS1="\w $ "
+#export PS1='\w$\$(parse_git_branch)\[\033[00m\] $ '
+export PS1="\w\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 source ~/.bash_apparix
 source ~/.git-completion.bash
-source ~/shconfig/oh-my-git/prompt.sh
 
 # Turn off escape character for ctrl+s so as to enable forward search
 stty -ixon
