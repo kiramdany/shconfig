@@ -32,6 +32,16 @@ parse_git_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
 
+# shortcut to get ip address
+ip() {
+  ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | tee /dev/tty | pbcopy
+}
+# static file server
+serve() {
+    #TODO: check for python version
+    python -m SimpleHTTPServer
+}
+
 export PATH=/Users/k.ramdany/scala/bin:$PATH
 #export PS1='\w$\$(parse_git_branch)\[\033[00m\] $ '
 export PS1="\w\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
