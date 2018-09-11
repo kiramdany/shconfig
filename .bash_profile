@@ -65,3 +65,18 @@ alias chrome='open -a "Google Chrome"'
 alias studio='open -a "Android Studio"'
 # displays folders with trailing slash
 alias ls='ls -pG'
+
+# git aliases
+alias gc='git commit'
+alias gco='git checkout'
+alias ga='git a'
+alias gl='git log'
+alias gd='git diff --color-words'
+
+#git scripts
+sync() {
+  git checkout master
+  git pull
+  git checkout -
+  git rebase master
+}
