@@ -41,6 +41,11 @@ serve() {
     #TODO: check for python version
     python -m SimpleHTTPServer
 }
+# set title of iTerm2 tabs
+title () {
+    echo -ne "\033]0;"$*"\007"
+}
+
 
 export PATH=/Users/k.ramdany/scala/bin:$PATH
 #export PS1='\w$\$(parse_git_branch)\[\033[00m\] $ '
