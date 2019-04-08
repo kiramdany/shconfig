@@ -85,3 +85,5 @@ sync() {
   git checkout -
   git rebase master
 }
+
+export PATH="$HOME/.cargo/bin:$PATH"
