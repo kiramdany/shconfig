@@ -19,3 +19,10 @@ git checkout -b intialConfig
 git commit -am 'Initial config on this comp'
 mv "$HOME"/shellconfig/* "$HOME"
 ```
+
+VSCode
+Once vscode is installed, including the command line helper `code`
+
+```
+for i in $(cat vscode/extensions.txt); do code --install-extension "$i"; done
+```

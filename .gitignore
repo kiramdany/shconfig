@@ -3,6 +3,13 @@
 !.bash_apparix
 !.bash_profile
 !.bashrc
+#Ubuntu vscode settings locations
+.config/**
+!.config
+!.config/Code
+!.config/Code/User
+!.config/Code/User/settings.json
+!.config/Code/User/keybindings.json
 !.git-completion.bash
 !.gitconfig
 !.gitignore
