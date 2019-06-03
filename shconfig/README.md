@@ -22,7 +22,9 @@ mv "$HOME"/shellconfig/* "$HOME"
 
 VSCode
 Once vscode is installed, including the command line helper `code`
+Make sure initial vscode settings in the relevant config folder are being tracked before copying over the ones from the repo 
 
 ```
 for i in $(cat vscode/extensions.txt); do code --install-extension "$i"; done
+cp "$HOME"/shconfig/vscode/{settings,keybindings}.json "$HOME"/.config/Code/User/
 ```
