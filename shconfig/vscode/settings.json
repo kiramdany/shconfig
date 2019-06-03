@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "workbench.sideBar.location": "right",
+    "workbench.activityBar.visible": false,
+    "workbench.colorTheme": "Dracula",
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "editor.tabCompletion": "on",
+    "editor.suggestSelection": "recentlyUsedByPrefix",
+    "window.zoomLevel": 0,
+    "editor.minimap.enabled": false
+}

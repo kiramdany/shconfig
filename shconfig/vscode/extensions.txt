@@ -1,0 +1,6 @@
+dbaeumer.vscode-eslint
+dracula-theme.theme-dracula
+eamodio.gitlens
+esbenp.prettier-vscode
+k--kato.intellij-idea-keybindings
+ms-python.python
