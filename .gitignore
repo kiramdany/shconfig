@@ -1,7 +1,12 @@
 /*
-!/shconfig
-!.gitignore
-!.bash_profile
+!.apparixrc
 !.bash_apparix
+!.bash_profile
 !.bashrc
+!.git-completion.bash
+!.gitconfig
+!.gitignore
+!.gitignore_global
 !.inputrc
+!/.vscode
+!/shconfig
