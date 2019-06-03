@@ -1,3 +1,32 @@
 [user]
 	name = kieran
 	email = kieran@thoughtmachine.net
+[diff]
+	tool = p4merge
+[difftool "p4merge"]
+	cmd = /Applications/p4merge.app/Contents/MacOS/p4merge $LOCAL $REMOTE
+[difftool]
+	prompt = false
+[core]
+	excludesfile = /Users/k.ramdany/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[alias]
+	co = checkout
+	browse = !sh -c 'stash browse'
+	d = diff --color-words
+	ci = commit
+	s = status
+[commit]
+	template = /Users/k.ramdany/.stCommitMsg
+[push]
+	default = current
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
