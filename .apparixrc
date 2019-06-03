@@ -1,38 +1,6 @@
-j,peg,/Users/k.ramdany/Documents/Projects/DaSh/pegasus
-j,doc,/Users/k.ramdany/Documents
-j,fal,/Users/k.ramdany/Documents/Projects/DaSh/falcon
-j,fire,/Users/k.ramdany/Documents/Projects/DaSh/firefly
-j,dl,/Users/k.ramdany/Downloads
-j,pup,/Users/k.ramdany/Documents/Projects/DaSh/Unicorn-Puppet
-j,pegh,/Users/k.ramdany/Documents/Projects/DaSh/Unicorn-Puppet/nap_hiera_pegasus
-j,pegr,/Users/k.ramdany/Documents/Projects/DaSh/Unicorn-Puppet/nap_role_pegasus
-j,sera2,/Users/k.ramdany/Documents/Learning/Coursera/Functional Program Design in Scala
-j,sera1,/Users/k.ramdany/Documents/Learning/Coursera/Functional Programming in Scala
-j,sera3,/Users/k.ramdany/Documents/Learning/Coursera/Parallel Programming
-j,stashcli,/Users/k.ramdany/Documents/Projects/Hackdays/17-10-16/bitbucket-server-cli
-j,bantz,/Users/k.ramdany/Documents/Learning/Workshops/Scala/transformers
-j,xt,/Users/k.ramdany/Documents/Projects/DaSh/xt
-j,per,/Users/k.ramdany/Documents/Personal
-j,dash,/Users/k.ramdany/Documents/DaSh/Tickets
-j,ply,/Users/k.ramdany/Documents/Playground
-j,isp,/Users/k.ramdany/Documents/Projects/isp
-j,lob,/Users/k.ramdany/Documents/Projects/isp/blue-lobster
-j,mateSession,/Users/k.ramdany/Library/Application Support/TextMate/Session
-j,bl,/Users/k.ramdany/Documents/Projects/yos/yos/apps/blue-lobster
-j,yos,/Users/k.ramdany/Documents/Projects/yos/yos
-j,demo,/Users/k.ramdany/Documents/Playground/LiveDemos
-j,isa,/Users/k.ramdany/Documents/Projects/isa
-j,roy,/Users/k.ramdany/Documents/Teaching/Tuition/Roy
-j,isia,/Users/k.ramdany/Documents/ISIA
-j,ios,/Users/k.ramdany/Documents/Learning/Udemy/iOS10-Swift3
-j,it,/Users/k.ramdany/Documents/Projects/Italiana/italiana_job
-j,and,/Users/k.ramdany/Documents/Projects/and
-j,mic,/Users/k.ramdany/Documents/Teaching/Tuition/Mickias
-j,loc,/Users/k.ramdany/Documents/Projects/isp/locer
-j,loc-mrp,/Users/k.ramdany/Documents/Projects/isp/locer-config-mrp
-j,lobInf,/Users/k.ramdany/Documents/Projects/isp/blue-lobster-infrastructure
-j,nap,/Users/k.ramdany/Documents/Projects/isp/nap
-j,mrp,/Users/k.ramdany/Documents/Projects/isp/mrp
-j,shconfig,/Users/k.ramdany/shconfig
-j,co,/Users/k.ramdany/Documents/Projects/yos/yos/apps/mrp-checkout
-j,out,/Users/k.ramdany/Documents/Projects/mrp-checkout
+j,dl,/home/kieran/Downloads
+j,per,/home/kieran/Documents/Personal
+j,ply,/home/kieran/Documents/Playground
+j,sh,/home/kieran/shconfig
+j,v,/home/kieran/Documents/Projects/core3
+j,doc,/home/kieran/Documents

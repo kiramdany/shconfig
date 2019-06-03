@@ -15,4 +15,5 @@
 !.gitignore
 !.gitignore_global
 !.inputrc
+!.profile_tm
 !/shconfig
