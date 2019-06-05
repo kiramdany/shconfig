@@ -5,11 +5,14 @@
 !.bashrc
 #Ubuntu vscode settings locations
 .config/**
-!.config
-!.config/Code
-!.config/Code/User
+!.config/
+!.config/Code/
+!.config/Code/User/
 !.config/Code/User/settings.json
 !.config/Code/User/keybindings.json
+# Ulauncher settings locations
+!.config/autostart/
+!.config/autostart/ulauncher.desktop
 !.git-completion.bash
 !.gitconfig
 !.gitignore

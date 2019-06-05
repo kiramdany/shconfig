@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Ulauncher
+Comment=Provides a convenient and fast way to launch your desktop applications
+Categories=GNOME;Utility;
+Exec=ulauncher --hide-window
+Icon=ulauncher
+Terminal=false
+Type=Application
+X-GNOME-Autostart-enabled=true
+X-GNOME-Autostart-Delay=5
