@@ -1,0 +1,5 @@
+"xset r off; xdotool keyup --window 0 Left key --clearmodifiers --window 0 ctrl+Page_Up; xset r on"
+  Alt+Mod4 + Left
+
+"xset r off; xdotool keyup --window 0 Right key --clearmodifiers --window 0 ctrl+Page_Down; xset r on"
+  Alt+Mod4 + Right

@@ -16,4 +16,5 @@
 !.gitignore_global
 !.inputrc
 !.profile_tm
+!.xbindkeysrc
 !/shconfig
