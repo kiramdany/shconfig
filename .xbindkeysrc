@@ -1,5 +1,15 @@
+#Mac like tab cycle left
 "xset r off; xdotool keyup --window 0 Left key --clearmodifiers --window 0 ctrl+Page_Up; xset r on"
   Alt+Mod4 + Left
 
+#Mac like tab cycle right
 "xset r off; xdotool keyup --window 0 Right key --clearmodifiers --window 0 ctrl+Page_Down; xset r on"
   Alt+Mod4 + Right
+
+#Mac like cmd+backspace to delete to beginning of line
+"xset r off; xdotool keyup --window 0 BackSpace key --clearmodifiers --window 0 shift+Home + BackSpace; xset r on"
+  Alt + BackSpace
+
+#Mac like cmd+delete to delete to end of line
+"xset r off; xdotool keyup --window 0 Delete key --clearmodifiers --window 0 shift+End + BackSpace; xset r on"
+  Alt + Delete
