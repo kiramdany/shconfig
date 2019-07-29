@@ -25,7 +25,7 @@ updateNodeVersion() {
 
 # This is run before every prompt
 # Add updateNodeVersion to existing prompt command
-export PROMPT_COMMAND="updateNodeVersion${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+# export PROMPT_COMMAND="updateNodeVersion${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 
 # Git branch in prompt.
 parse_git_branch() {
@@ -47,7 +47,7 @@ title () {
 }
 
 
-export PATH=/Users/k.ramdany/scala/bin:$PATH
+# export PATH=/Users/k.ramdany/scala/bin:$PATH
 #export PS1='\w$\$(parse_git_branch)\[\033[00m\] $ '
 export PS1="\w\[\033[32m\]\$(parse_git_branch)\[\033[00m\] $ "
 source ~/.bash_apparix
@@ -56,18 +56,18 @@ source ~/.git-completion.bash
 # Turn off escape character for ctrl+s so as to enable forward search
 stty -ixon
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+# export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
-export NVM_DIR="$HOME/.nvm"
+# export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 
-eval "$(pyenv init -)" # init pyenv to choose python version similiar to rvm and nvm
+# eval "$(pyenv init -)" # init pyenv to choose python version similiar to rvm and nvm
 
 
 # shortcut to opening files with google chrome
-alias chrome='open -a "Google Chrome"'
+# alias chrome='open -a "Google Chrome"'
 # shortcut to opening projects with Android Studio
-alias studio='open -a "Android Studio"'
+# alias studio='open -a "Android Studio"'
 # displays folders with trailing slash
 alias ls='ls -pG'
 
@@ -86,4 +86,4 @@ sync() {
   git rebase master
 }
 
-export PATH="$HOME/.cargo/bin:$PATH"
+# export PATH="$HOME/.cargo/bin:$PATH"

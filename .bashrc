@@ -118,3 +118,6 @@ if ! shopt -oq posix; then
 fi
 if [ -e /home/kieran/.profile_tm ]; then . /home/kieran/.profile_tm; fi
 source <(~/.please/plz --completion_script)
+
+# Load utils from mac script 
+. ~/.bash_profile
