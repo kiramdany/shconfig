@@ -19,6 +19,7 @@
 	co = checkout
 	browse = !sh -c 'stash browse'
 	d = diff --color-words
+	ds = diff --name-status
 	ci = commit
 	s = status
 [commit]
