@@ -1,11 +1,36 @@
 {
-    "editor.formatOnSave": true,
-    "workbench.sideBar.location": "right",
-    "workbench.activityBar.visible": false,
-    "workbench.colorTheme": "Dracula",
-    "workbench.editor.enablePreviewFromQuickOpen": false,
-    "editor.tabCompletion": "on",
-    "editor.suggestSelection": "recentlyUsedByPrefix",
-    "window.zoomLevel": 0,
-    "editor.minimap.enabled": false
+  "editor.formatOnSave": true,
+  "workbench.sideBar.location": "right",
+  "workbench.activityBar.visible": false,
+  "workbench.colorTheme": "Dracula",
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "editor.tabCompletion": "on",
+  "editor.suggestSelection": "recentlyUsedByPrefix",
+  "editor.minimap.enabled": false,
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.includeLanguages": {
+    "typescript": "typescriptreact"
+  },
+  "files.associations": {
+    "BUILD": "python" // This will highlight syntax in BUILD files. Ideally this should be used with the run on save plugin to prevent vscode reformatting the BUILD files
+  },
+  "typescript.updateImportsOnFileMove.enabled": "never", // VSCode doesn’t seem to get this right reliably in our repo
+  "workbench.settings.editor": "json",
+  "workbench.settings.useSplitJSON": true,
+  "gitlens.mode.active": "review",
+  "window.zoomLevel": 0,
+  "bracket-pair-colorizer-2.colors": [
+    /* Dracula Theme*/
+    /* --- */
+    // Foreground
+    "#F8F8F2",
+    // Comment
+    "#6272A4",
+    // Cyan
+    "#8BE9FD",
+    // Purple
+    "#BD93F9"
+  ],
+  "bracket-pair-colorizer-2.colorMode": "Independent",
+  "bracket-pair-colorizer-2.showBracketsInGutter": true
 }
