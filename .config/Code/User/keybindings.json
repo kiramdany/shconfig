@@ -1,86 +1,160 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
   {
-    "key": "cmd+d",
-    "command": "-editor.action.copyLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
+    "key": "tab",
+    "command": "-editor.emmet.action.expandAbbreviation",
+    "when": "editorTextFocus"
   },
   {
-    "key": "shift+cmd+left",
-    "command": "workbench.action.increaseViewSize",
-    "when": "explorerViewletFocus"
+    "key": "tab",
+    "command": "editor.emmet.action.expandAbbreviation",
+    "when": "editorTextFocus"
   },
   {
-    "key": "shift+cmd+right",
-    "command": "workbench.action.decreaseViewSize",
-    "when": "explorerViewletFocus"
+    "key": "ctrl+enter",
+    "command": "editor.action.goToTypeDefinition",
+    "when": "editorTextFocus"
   },
   {
-    "key": "shift+cmd+up",
+    "key": "alt+left",
+    "command": "workbench.action.navigateBack",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "alt+right",
+    "command": "workbench.action.navigateForward",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+d",
+    "command": "editor.action.copyLinesDownAction",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "ctrl+shift+up",
     "command": "editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
+    "when": "editorTextFocus"
   },
   {
-    "key": "shift+alt+up",
-    "command": "-editor.action.moveLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "shift+cmd+up",
-    "command": "-cursorTopSelect",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "shift+cmd+down",
+    "key": "ctrl+shift+down",
     "command": "editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "shift+alt+down",
-    "command": "-editor.action.moveLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
-  },
-  {
-    "key": "shift+cmd+down",
-    "command": "-cursorBottomSelect",
-    "when": "textInputFocus"
-  },
-  {
-    "key": "alt+cmd+right",
-    "command": "-workbench.action.navigateForward"
-  },
-  {
-    "key": "alt+cmd+left",
-    "command": "-workbench.action.navigateBack"
-  },
-  {
-    "key": "shift+alt+up",
-    "command": "editor.action.insertCursorAbove",
     "when": "editorTextFocus"
   },
   {
-    "key": "alt+cmd+up",
-    "command": "-editor.action.insertCursorAbove",
-    "when": "editorTextFocus"
+    "key": "alt+0",
+    "command": "workbench.action.toggleActivityBarVisibility"
   },
   {
-    "key": "shift+alt+down",
-    "command": "editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
+    "key": "ctrl+meta+left",
+    "command": "workbench.action.increaseViewSize",
+    "when": "sideBarFocus"
   },
   {
-    "key": "alt+cmd+down",
-    "command": "-editor.action.insertCursorBelow",
-    "when": "editorTextFocus"
+    "key": "ctrl+meta+right",
+    "command": "workbench.action.decreaseViewSize",
+    "when": "sideBarFocus"
   },
   {
-    "key": "shift+alt+down",
-    "command": "-editor.action.copyLinesDownAction",
-    "when": "editorTextFocus && !editorReadonly"
+    "key": "alt+1",
+    "command": "workbench.view.explorer"
   },
   {
-    "key": "shift+alt+up",
-    "command": "-editor.action.copyLinesUpAction",
-    "when": "editorTextFocus && !editorReadonly"
+    "key": "alt+1",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && activeViewlet == workbench.view.explorer"
+  },
+  {
+    "key": "alt+2",
+    "command": "workbench.view.search"
+  },
+  {
+    "key": "alt+2",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && activeViewlet == workbench.view.search"
+  },
+  {
+    "key": "alt+3",
+    "command": "workbench.view.scm"
+  },
+  {
+    "key": "alt+3",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && activeViewlet == workbench.view.scm"
+  },
+  {
+    "key": "alt+4",
+    "command": "workbench.view.debug"
+  },
+  {
+    "key": "alt+4",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && activeViewlet == workbench.view.debug"
+  },
+  {
+    "key": "alt+5",
+    "command": "workbench.view.extensions"
+  },
+  {
+    "key": "alt+5",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && activeViewlet == workbench.view.extensions"
+  },
+  {
+    "key": "alt+6",
+    "command": "workbench.view.extension.bookmarks"
+  },
+  {
+    "key": "alt+6",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && activeViewlet == workbench.view.extension.bookmarks"
+  },
+  {
+    "key": "alt+7",
+    "command": "workbench.view.extension.gitlens"
+  },
+  {
+    "key": "alt+7",
+    "command": "workbench.action.toggleSidebarVisibility",
+    "when": "sideBarFocus && activeViewlet == workbench.view.extension.gitlens"
+  },
+  {
+    "key": "ctrl+0",
+    "command": "workbench.action.zoomReset"
+  },
+  {
+    "key": "ctrl+1",
+    "command": "workbench.action.openEditorAtIndex1"
+  },
+  {
+    "key": "ctrl+2",
+    "command": "workbench.action.openEditorAtIndex2"
+  },
+  {
+    "key": "ctrl+3",
+    "command": "workbench.action.openEditorAtIndex3"
+  },
+  {
+    "key": "ctrl+4",
+    "command": "workbench.action.openEditorAtIndex4"
+  },
+  {
+    "key": "ctrl+5",
+    "command": "workbench.action.openEditorAtIndex5"
+  },
+  {
+    "key": "ctrl+6",
+    "command": "workbench.action.openEditorAtIndex6"
+  },
+  {
+    "key": "ctrl+7",
+    "command": "workbench.action.openEditorAtIndex7"
+  },
+  {
+    "key": "ctrl+8",
+    "command": "workbench.action.openEditorAtIndex8"
+  },
+  {
+    "key": "ctrl+9",
+    "command": "workbench.action.lastEditorInGroup"
   }
 ]
