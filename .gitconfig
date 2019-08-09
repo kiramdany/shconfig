@@ -22,6 +22,8 @@
 	ds = diff --name-status
 	ci = commit
 	s = status
+	b = !git for-each-ref --count=${1:-5} --sort=-committerdate refs/heads/ --format='%(refname:short)'
+
 [commit]
 	template = /Users/k.ramdany/.stCommitMsg
 [push]
