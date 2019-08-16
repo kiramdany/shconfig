@@ -1,6 +1,14 @@
+alefragnani.Bookmarks
+ChakrounAnas.turbo-console-log
+CoenraadS.bracket-pair-colorizer-2
 dbaeumer.vscode-eslint
 dracula-theme.theme-dracula
 eamodio.gitlens
 esbenp.prettier-vscode
-k--kato.intellij-idea-keybindings
+formulahendry.auto-rename-tag
+glen-84.sass-lint
+mechatroner.rainbow-csv
+mike-co.import-sorter
 ms-python.python
+please-build.plz-vscode
+WallabyJs.quokka-vscode

@@ -1,6 +1,11 @@
 // Place your key bindings in this file to override the defaultsauto[]
 [
   {
+    "key": "ctrl+l",
+    "command": "workbench.action.gotoLine",
+    "when": "editorTextFocus"
+  },
+  {
     "key": "tab",
     "command": "-editor.emmet.action.expandAbbreviation",
     "when": "editorTextFocus"
@@ -45,12 +50,12 @@
     "command": "workbench.action.toggleActivityBarVisibility"
   },
   {
-    "key": "ctrl+meta+left",
+    "key": "shift+alt+left",
     "command": "workbench.action.increaseViewSize",
     "when": "sideBarFocus"
   },
   {
-    "key": "ctrl+meta+right",
+    "key": "shift+alt+right",
     "command": "workbench.action.decreaseViewSize",
     "when": "sideBarFocus"
   },
