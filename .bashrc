@@ -116,8 +116,6 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-if [ -e /home/kieran/.profile_tm ]; then . /home/kieran/.profile_tm; fi
-source <(~/.please/plz --completion_script)
 
 # Load utils from mac script 
 . ~/.bash_profile
@@ -127,3 +125,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 . ~/.limiter
+alias c='xclip -selection clipboard'
+alias v='xclip -selection clipboard -o'
+
