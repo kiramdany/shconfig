@@ -1,6 +1,6 @@
 [user]
-	name = kieran
-	email = kieran@thoughtmachine.net
+	name = Kieran Ramdany
+	email = 12574206+kiramdany@users.noreply.github.com
 [diff]
 	tool = p4merge
 [difftool "p4merge"]
@@ -23,9 +23,7 @@
 	ci = commit
 	s = status
 	b = !git for-each-ref --count=${1:-5} --sort=-committerdate refs/heads/ --format='%(refname:short)'
-
 [commit]
-	template = /Users/k.ramdany/.stCommitMsg
 [push]
 	default = current
 [filter "lfs"]

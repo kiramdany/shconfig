@@ -121,3 +121,5 @@ source <(~/.please/plz --completion_script)
 
 # Load utils from mac script 
 . ~/.bash_profile
+
+. ~/.limiter

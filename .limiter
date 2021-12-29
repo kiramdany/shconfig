@@ -1,0 +1,5 @@
+cpulimit -e kdswap0 -l80&
+cpulimit -e code -l80&
+cpulimit -e node -l80&
+cpulimit -e chrome -l80&
+cpulimit -e spotify -l80&
