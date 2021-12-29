@@ -1,8 +1,7 @@
 {
   "editor.wordWrap": "on",
-  "editor.formatOnSave": true,
+  // "editor.formatOnSave": true,
   "workbench.sideBar.location": "right",
-  "workbench.activityBar.visible": false,
   "workbench.colorTheme": "Dracula",
   "workbench.editor.enablePreviewFromQuickOpen": false,
   "editor.tabCompletion": "on",
@@ -16,10 +15,9 @@
     "BUILD": "plz" // This will highlight syntax in BUILD files. Ideally this should be used with the run on save plugin to prevent vscode reformatting the BUILD files
   },
   "typescript.updateImportsOnFileMove.enabled": "never", // VSCode doesn’t seem to get this right reliably in our repo
-  "workbench.settings.editor": "json",
+  // "workbench.settings.editor": "json",
   "workbench.settings.useSplitJSON": true,
   "gitlens.mode.active": "review",
-  "window.zoomLevel": 0,
   "bracket-pair-colorizer-2.colors": [
     /* Dracula Theme*/
     /* --- */
@@ -63,4 +61,32 @@
   ],
   "importSorter.sortConfiguration.removeUnusedImports": true,
   "importSorter.sortConfiguration.removeUnusedDefaultImports": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.arrowParens": "always",
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "javascript.validate.enable": false,
+  "eslint.autoFixOnSave": true,
+  "editor.formatOnSave": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "gitlens.views.repositories.files.layout": "list",
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "timeline.excludeSources": [],
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.activityBar.visible": false,
+  "workbench.editor.revealIfOpen": false
 }
